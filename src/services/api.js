@@ -1,12 +1,11 @@
-// import axios library for sending HTTP request to Laravel
+
 import axios from 'axios'
 
-// Instance axios (konfigurasi khusus untuk aplikasi Paddle Court Booking)
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api',
+    baseURL: import.meta.env.VITE_API_URL || '/api',
     headers: {
         Accept: 'application/json',
-        'Content-Type' : 'application/json',
+        'Content-Type': 'application/json',
     },
 })
 
@@ -20,24 +19,18 @@ api.interceptors.request.use(
 
         return config
     },
-    (error) => {
-        return Promise.reject(error)
-    }
+    (error) => Promise.reject(error)
 )
 
 api.interceptors.response.use(
-    (response) => {
-        return response
-    },
+    (response) => response,
     (error) => {
-
         if (
             error.response?.status === 401 &&
             !error.config?.url?.endsWith('/login')
         ) {
             localStorage.removeItem('paddle-token')
             localStorage.removeItem('paddle-user')
-            
 
             window.location.href = '/login'
         }
@@ -45,4 +38,5 @@ api.interceptors.response.use(
         return Promise.reject(error)
     }
 )
+
 export default api
