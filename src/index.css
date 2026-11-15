@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* LIGHT MODE (DEFAULT) */
+:root {
+    color-scheme: light;
+
+    --background: #F7F7F5;
+    --surface: #FFFFFF;
+    --surface--elevated: #F1F5F9;
+
+    --foreground: #151A23;
+    --muted: #64748B;
+
+    --border: #E2E8F0;
+
+    --accent: #EA7A25;
+    --accent-hover: #D96818;
+    --accent-foreground: #FFFFFF;
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+}
+
+/* DARK MODE */
+[data-theme = "dark"] {
+    color-scheme: dark;
+
+    --background: #151A23;
+    --surface: #222B38;
+    --surface-elevated: #354052;
+
+    --foreground: #F7F7F5;
+    --muted: #A3AAB5;
+
+    --border: #354052;
+
+    --accent: #FB923C;
+    --accent-hover: #F97316;
+    --accent-foreground: #151A23;
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+}
+
+/* THEME MAPPING */
+@theme inline {
+    --color-background: var(--background);
+    --color-surface: var(--surface);
+    --color-surface-elevated: var(--surface-elevated);
+
+    --color-foreground: var(--foreground);
+    --color-muted: var(--muted);
+
+    --color-border: var(--border);
+
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-info: var(--info);
+
+    --font-heading: "Plus Jakarta Sans", sans-serif;
+    --font-body: "Inter", sans-serif;
+
+    --radius-card: 1rem;
+    --radius-control: 0.75rem;
+}
+
+/* GLOBAL STYLES */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+
+    background-color: var(--background);
+    color: var(--foreground);
+
+    font-family: var(--font-body);
+
+    transition:
+        background-color 200ms ease,
+        color 200ms ease;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
